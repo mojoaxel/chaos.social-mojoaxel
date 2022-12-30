@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="theme.css" />
+    <style type="text/css">
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        max-width: 40rem;
+        min-height: 100vh;
+        margin: 0 auto;
+        background-color: var(--page-background-color);
+        color: var(--text-color);
+        font-family: var(--main-font-family);
+      }
+      a,
+      a:visited,
+      a:active {
+        color: var(--text-color-links);
+        text-decoration: none;
+      }
+      a:hover {
+        color: var(--text-color-links);
+        text-decoration: underline;
+      }
+      header,
+      main,
+      footer {
+        width: 100%;
+        background-color: var(--background-color);
+        flex-grow: 1;
+      }
+      main {
+        flex-grow: 2;
+      }
+      footer {
+        margin-top: 1rem;
+      }
+      .toot {
+        box-sizing: border-box;
+        display: block;
+        margin: 0;
+        padding: 1rem;
+        width: 100%;
+        border-bottom: 1px solid var(--page-background-color);
+      }
+
+      .toot header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .toot header .user {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+      }
+      .toot header .user .avatar {
+        width: 2rem;
+        height: 2rem;
+        border: none;
+        border-radius: var(--border-radius);
+      }
+      .toot header .user .avatar img {
+        width: 100%;
+        height: 100%;
+      }
+      .toot header .user .name {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .toot .published {
+        color: var(--text-color-secondary);
+        align-self: flex-start;
+      }
+
+      .toot .attachment {
+        width: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div id="page_header">
+        <div class="banner">
+          <img width="100%" src="header.jpeg" alt="background banner" />
+        </div>
+        <section class="content">
+          <div class="user">
+            <img class="avatar" src="avatar.jpg" alt="user avatar" />
+            <div class="names">
+              <div class="name">Alex ☑️</div>
+              <ul>
+                <li>
+                  <a href="https://chaos.social/@mojoaxel"
+                    >@mojoaxel@chaos.social</a
+                  >
+                </li>
+
+                <li>
+                  <a href="https://bitcoinhackers.org/users/mojoaxel"
+                    >@mojoaxel@bitcoinhackers.org</a
+                  >
+                </li>
+
+                <li>
+                  <a href="https://social.tchncs.de/users/mojoaxel"
+                    >@mojoaxel@social.tchncs.de</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="summary">
+            <p>
+              Softwareker | JavaScript lover | Arbeitgeber | Nachhaltigkeit |
+              Transparenz-Extremist | de,en
+            </p>
+          </div>
+
+          <div class="status">
+            This is a static archive. This account is no longer active.
+
+            <br />
+            The user moved to
+            <a href="https://social.tchncs.de/users/mojoaxel"
+              >@mojoaxel@social.tchncs.de</a
+            >
+          </div>
+
+          <style type="text/css">
+            .status {
+              position: relative;
+              color: var(--text-color);
+              border: 1px dotted var(--text-color-links);
+              border-radius: var(--borer-radius);
+              padding: 0.5rem;
+            }
+            .status::after {
+              content: "！";
+              display: block;
+              position: absolute;
+              top: 0;
+              right: 0;
+              font-size: 2rem;
+              color: var(--text-color-links);
+            }
+          </style>
+
+          <dl class="attachments">
+            <dt>GitHub</dt>
+            <dd>
+              <span class="h-card"
+                ><a href="https://chaos.social/@mojoaxel" class="u-url mention"
+                  >@<span>mojoaxel</span></a
+                ></span
+              >
+            </dd>
+
+            <dt>Work</dt>
+            <dd>
+              <a
+                href="https://fullstax.de"
+                target="_blank"
+                rel="nofollow noopener noreferrer me"
+                ><span class="invisible">https://</span
+                ><span class="">fullstax.de</span><span class="invisible"></span
+              ></a>
+            </dd>
+          </dl>
+
+          <style type="text/css">
+            dl.attachments {
+              display: block;
+              margin: 0;
+              margin: 1rem 0 0 0;
+              padding: 0;
+              font-size: smaller;
+              background-color: var(--page-background-color);
+              border-radius: var(--border-radius);
+            }
+            .attachments dt,
+            .attachments dd {
+              margin: 0;
+              padding: 0 1rem;
+            }
+            .attachments dt {
+              text-transform: uppercase;
+              color: var(--text-color-secondary);
+              padding-top: 1rem;
+            }
+            .attachments dd {
+              border-bottom: 1px solid var(--background-color);
+              padding-bottom: 1rem;
+            }
+          </style>
+        </section>
+      </div>
+
+      <style type="text/css">
+        #page_header {
+          border-bottom: 1px solid var(--page-background-color);
+        }
+        #page_header .content {
+          padding: var(--padding);
+        }
+        #page_header .content .user {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 2rem;
+        }
+        #page_header .content .user .avatar {
+          width: 7rem;
+          height: 7rem;
+          border-radius: var(--borer-radius);
+          border: 2px solid var(--text-color);
+        }
+        #page_header .content .user .names {
+          display: flex;
+          flex-direction: column;
+          text-align: right;
+        }
+        #page_header .content .user .names .name {
+          font-size: var(--padding);
+          font-weight: bold;
+          margin: 0.5rem 0;
+        }
+        #page_header .content .user .names ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+      </style>
+      <nav>
+        <ul class="navigation">
+          <li>
+            <a href="./index.html">
+              <em>55</em>
+              Posts
+            </a>
+          </li>
+          <li><em>144</em> Replies</li>
+          <li>
+            <a href="./likes.html">
+              <em>693</em>
+              Likes
+            </a>
+          </li>
+          <li>
+            <a href="./bookmarks.html">
+              <em>2</em>
+              Bookmarks
+            </a>
+          </li>
+          <li>
+            <a href="./media.html">
+              <em>18</em>
+              Media
+            </a>
+          </li>
+          <li>
+            <a href="./tags.html">
+              <em>80</em>
+              Tags
+            </a>
+          </li>
+        </ul>
+
+        <style type="text/css">
+          ul.navigation {
+            list-style-type: none;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color-secondary);
+            background-color: var(--page-background-color);
+          }
+          ul.navigation li {
+            display: block;
+            padding: 1rem;
+          }
+          ul.navigation li.active {
+            background-color: var(--background-color);
+          }
+          ul.navigation li em {
+            font-weight: bold;
+            font-style: normal;
+          }
+        </style>
+      </nav>
+    </header>
+    <main>
+      <ul class="media">
+        <li>
+          <a
+            href="./media_attachments/files/109/258/744/179/118/295/original/33e9c9b1845c8e93.png"
+            target="_blank"
+            loading="lazy"
+          >
+            <img
+              src="./media_attachments/files/109/258/744/179/118/295/original/33e9c9b1845c8e93.png"
+            />
+          </a>
+        </li>
+
+        <li>
+          <video
+            src="./media_attachments/files/109/264/012/625/221/668/original/3b578a4a63f26462.mp4"
+            autoplay
+            loop
+          ></video>
+        </li>
+
+        <li>
+          <a
+            href="./media_attachments/files/109/298/161/940/122/058/original/9c87f4d467f68469.jpg"
+            target="_blank"
+            loading="lazy"
+          >
+            <img
+              src="./media_attachments/files/109/298/161/940/122/058/original/9c87f4d467f68469.jpg"
+            />
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="./media_attachments/files/109/298/270/194/186/493/original/4277848703d9b6ca.png"
+            target="_blank"
+            loading="lazy"
+          >
+            <img
+              src="./media_attachments/files/109/298/270/194/186/493/original/4277848703d9b6ca.png"
+            />
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="./media_attachments/files/109/352/434/473/544/486/original/e73f09297ee9ae6c.png"
+            target="_blank"
+            loading="lazy"
+          >
+            <img
+              src="./media_attachments/files/109/352/434/473/544/486/original/e73f09297ee9ae6c.png"
+            />
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="./media_attachments/files/109/355/984/132/714/563/original/aabf757e2c5146ac.jpg"
+            target="_blank"
+            loading="lazy"
+          >
+            <img
+              src="./media_attachments/files/109/355/984/132/714/563/original/aabf757e2c5146ac.jpg"
+            />
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="./media_attachments/files/109/367/042/890/865/972/original/d9ad0aa5d35f8040.png"
+            target="_blank"
+            loading="lazy"
+          >
+            <img
+              src="./media_attachments/files/109/367/042/890/865/972/original/d9ad0aa5d35f8040.png"
+            />
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="./media_attachments/files/109/383/724/607/118/516/original/8f69bb690adffb0f.jpeg"
+            target="_blank"
+            loading="lazy"
+          >
+            <img
+              src="./media_attachments/files/109/383/724/607/118/516/original/8f69bb690adffb0f.jpeg"
+            />
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="./media_attachments/files/109/383/833/598/242/612/original/492fec6879a01b6f.png"
+            target="_blank"
+            loading="lazy"
+          >
+            <img
+              src="./media_attachments/files/109/383/833/598/242/612/original/492fec6879a01b6f.png"
+            />
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="./media_attachments/files/109/391/836/200/743/168/original/736a002c8f3846aa.jpg"
+            target="_blank"
+            loading="lazy"
+          >
+            <img
+              src="./media_attachments/files/109/391/836/200/743/168/original/736a002c8f3846aa.jpg"
+            />
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="./media_attachments/files/109/414/957/773/328/132/original/658cbe6e5d6c234b.jpg"
+            target="_blank"
+            loading="lazy"
+          >
+            <img
+              src="./media_attachments/files/109/414/957/773/328/132/original/658cbe6e5d6c234b.jpg"
+            />
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="./media_attachments/files/109/414/957/807/767/463/original/3c7fce6d5952473a.jpg"
+            target="_blank"
+            loading="lazy"
+          >
+            <img
+              src="./media_attachments/files/109/414/957/807/767/463/original/3c7fce6d5952473a.jpg"
+            />
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="./media_attachments/files/109/414/957/831/135/418/original/362062296375bb46.jpg"
+            target="_blank"
+            loading="lazy"
+          >
+            <img
+              src="./media_attachments/files/109/414/957/831/135/418/original/362062296375bb46.jpg"
+            />
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="./media_attachments/files/109/420/418/841/824/026/original/96613d700718ce5b.png"
+            target="_blank"
+            loading="lazy"
+          >
+            <img
+              src="./media_attachments/files/109/420/418/841/824/026/original/96613d700718ce5b.png"
+            />
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="./media_attachments/files/109/438/007/746/294/791/original/d9952188e995d968.webp"
+            target="_blank"
+            loading="lazy"
+          >
+            <img
+              src="./media_attachments/files/109/438/007/746/294/791/original/d9952188e995d968.webp"
+            />
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="./media_attachments/files/109/450/574/309/983/043/original/cea6c1cfd7f5b29a.jpg"
+            target="_blank"
+            loading="lazy"
+          >
+            <img
+              src="./media_attachments/files/109/450/574/309/983/043/original/cea6c1cfd7f5b29a.jpg"
+            />
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="./media_attachments/files/109/534/991/392/412/102/original/12ffb12e51af3472.jpg"
+            target="_blank"
+            loading="lazy"
+          >
+            <img
+              src="./media_attachments/files/109/534/991/392/412/102/original/12ffb12e51af3472.jpg"
+            />
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="./media_attachments/files/109/564/415/277/895/112/original/b93d72415d794742.jpg"
+            target="_blank"
+            loading="lazy"
+          >
+            <img
+              src="./media_attachments/files/109/564/415/277/895/112/original/b93d72415d794742.jpg"
+            />
+          </a>
+        </li>
+      </ul>
+
+      <style type="text/css">
+        ul.media {
+          display: flex;
+          flex-flow: row wrap;
+          list-style-type: none;
+          margin: 0;
+          padding: var(--padding);
+          gap: 0.5rem;
+        }
+        ul.media li {
+          display: block;
+          margin: 0;
+          padding: 0;
+          width: 32%;
+          aspect-ratio: 1 / 1;
+          overflow: hidden;
+        }
+        ul.media li:has(a) {
+          border: 1px solid var(--text-color-links);
+        }
+        ul.media li img,
+        ul.media li video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      </style>
+    </main>
+    <footer>
+      <div id="page_footer">
+        <ul class="content">
+          <li>
+            <a href="https://github.com/mojoaxel/tootback#readme">GitHub</a>
+          </li>
+        </ul>
+      </div>
+
+      <style type="text/css">
+        #page_footer {
+          padding: var(--padding);
+        }
+        #page_footer ul.content {
+          display: flex;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          flex-direction: row;
+          justify-content: space-between;
+        }
+      </style>
+    </footer>
+  </body>
+</html>

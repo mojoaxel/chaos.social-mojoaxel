@@ -1,0 +1,2514 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="theme.css" />
+    <style type="text/css">
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        max-width: 40rem;
+        min-height: 100vh;
+        margin: 0 auto;
+        background-color: var(--page-background-color);
+        color: var(--text-color);
+        font-family: var(--main-font-family);
+      }
+      a,
+      a:visited,
+      a:active {
+        color: var(--text-color-links);
+        text-decoration: none;
+      }
+      a:hover {
+        color: var(--text-color-links);
+        text-decoration: underline;
+      }
+      header,
+      main,
+      footer {
+        width: 100%;
+        background-color: var(--background-color);
+        flex-grow: 1;
+      }
+      main {
+        flex-grow: 2;
+      }
+      footer {
+        margin-top: 1rem;
+      }
+      .toot {
+        box-sizing: border-box;
+        display: block;
+        margin: 0;
+        padding: 1rem;
+        width: 100%;
+        border-bottom: 1px solid var(--page-background-color);
+      }
+
+      .toot header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .toot header .user {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+      }
+      .toot header .user .avatar {
+        width: 2rem;
+        height: 2rem;
+        border: none;
+        border-radius: var(--border-radius);
+      }
+      .toot header .user .avatar img {
+        width: 100%;
+        height: 100%;
+      }
+      .toot header .user .name {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .toot .published {
+        color: var(--text-color-secondary);
+        align-self: flex-start;
+      }
+
+      .toot .attachment {
+        width: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div id="page_header">
+        <div class="banner">
+          <img width="100%" src="header.jpeg" alt="background banner" />
+        </div>
+        <section class="content">
+          <div class="user">
+            <img class="avatar" src="avatar.jpg" alt="user avatar" />
+            <div class="names">
+              <div class="name">Alex ☑️</div>
+              <ul>
+                <li>
+                  <a href="https://chaos.social/@mojoaxel"
+                    >@mojoaxel@chaos.social</a
+                  >
+                </li>
+
+                <li>
+                  <a href="https://bitcoinhackers.org/users/mojoaxel"
+                    >@mojoaxel@bitcoinhackers.org</a
+                  >
+                </li>
+
+                <li>
+                  <a href="https://social.tchncs.de/users/mojoaxel"
+                    >@mojoaxel@social.tchncs.de</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="summary">
+            <p>
+              Softwareker | JavaScript lover | Arbeitgeber | Nachhaltigkeit |
+              Transparenz-Extremist | de,en
+            </p>
+          </div>
+
+          <div class="status">
+            This is a static archive. This account is no longer active.
+
+            <br />
+            The user moved to
+            <a href="https://social.tchncs.de/users/mojoaxel"
+              >@mojoaxel@social.tchncs.de</a
+            >
+          </div>
+
+          <style type="text/css">
+            .status {
+              position: relative;
+              color: var(--text-color);
+              border: 1px dotted var(--text-color-links);
+              border-radius: var(--borer-radius);
+              padding: 0.5rem;
+            }
+            .status::after {
+              content: "！";
+              display: block;
+              position: absolute;
+              top: 0;
+              right: 0;
+              font-size: 2rem;
+              color: var(--text-color-links);
+            }
+          </style>
+
+          <dl class="attachments">
+            <dt>GitHub</dt>
+            <dd>
+              <span class="h-card"
+                ><a href="https://chaos.social/@mojoaxel" class="u-url mention"
+                  >@<span>mojoaxel</span></a
+                ></span
+              >
+            </dd>
+
+            <dt>Work</dt>
+            <dd>
+              <a
+                href="https://fullstax.de"
+                target="_blank"
+                rel="nofollow noopener noreferrer me"
+                ><span class="invisible">https://</span
+                ><span class="">fullstax.de</span><span class="invisible"></span
+              ></a>
+            </dd>
+          </dl>
+
+          <style type="text/css">
+            dl.attachments {
+              display: block;
+              margin: 0;
+              margin: 1rem 0 0 0;
+              padding: 0;
+              font-size: smaller;
+              background-color: var(--page-background-color);
+              border-radius: var(--border-radius);
+            }
+            .attachments dt,
+            .attachments dd {
+              margin: 0;
+              padding: 0 1rem;
+            }
+            .attachments dt {
+              text-transform: uppercase;
+              color: var(--text-color-secondary);
+              padding-top: 1rem;
+            }
+            .attachments dd {
+              border-bottom: 1px solid var(--background-color);
+              padding-bottom: 1rem;
+            }
+          </style>
+        </section>
+      </div>
+
+      <style type="text/css">
+        #page_header {
+          border-bottom: 1px solid var(--page-background-color);
+        }
+        #page_header .content {
+          padding: var(--padding);
+        }
+        #page_header .content .user {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 2rem;
+        }
+        #page_header .content .user .avatar {
+          width: 7rem;
+          height: 7rem;
+          border-radius: var(--borer-radius);
+          border: 2px solid var(--text-color);
+        }
+        #page_header .content .user .names {
+          display: flex;
+          flex-direction: column;
+          text-align: right;
+        }
+        #page_header .content .user .names .name {
+          font-size: var(--padding);
+          font-weight: bold;
+          margin: 0.5rem 0;
+        }
+        #page_header .content .user .names ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+      </style>
+      <nav>
+        <ul class="navigation">
+          <li>
+            <a href="./index.html">
+              <em>55</em>
+              Posts
+            </a>
+          </li>
+          <li><em>144</em> Replies</li>
+          <li>
+            <a href="./likes.html">
+              <em>693</em>
+              Likes
+            </a>
+          </li>
+          <li>
+            <a href="./bookmarks.html">
+              <em>2</em>
+              Bookmarks
+            </a>
+          </li>
+          <li>
+            <a href="./media.html">
+              <em>18</em>
+              Media
+            </a>
+          </li>
+          <li>
+            <a href="./tags.html">
+              <em>80</em>
+              Tags
+            </a>
+          </li>
+        </ul>
+
+        <style type="text/css">
+          ul.navigation {
+            list-style-type: none;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color-secondary);
+            background-color: var(--page-background-color);
+          }
+          ul.navigation li {
+            display: block;
+            padding: 1rem;
+          }
+          ul.navigation li.active {
+            background-color: var(--background-color);
+          }
+          ul.navigation li em {
+            font-weight: bold;
+            font-style: normal;
+          }
+        </style>
+      </nav>
+    </header>
+    <main>
+      <ul class="toots">
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">12/23/2022, 6:34:56 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              Gerade gesehen, dass
+              <span class="h-card"
+                ><a href="https://chaos.social/@kattascha" class="u-url mention"
+                  >@<span>kattascha</span></a
+                ></span
+              >
+              am 16.01.2023 nach
+              <a
+                href="https://chaos.social/tags/F%C3%BCrth"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>Fürth</span></a
+              >
+              kommt um Ihr Buch &quot;Gefährlicher Glaube&quot; über die
+              Gefahren von Esoterik, vorzustellen.<br />Ist im Kalender
+              eingetragen! Freu mich voll!
+            </p>
+
+            <a
+              href="./media_attachments/files/109/564/415/277/895/112/original/b93d72415d794742.jpg"
+            >
+              <img
+                class="attachment"
+                style="max-width: 1247px; max-height: 1663px"
+                src="./media_attachments/files/109/564/415/277/895/112/original/b93d72415d794742.jpg"
+                alt=""
+                loading="lazy"
+              />
+            </a>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">12/22/2022, 1:45:21 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              AI can design 3D models 🤯 <br /><a
+                href="https://www.youtube.com/watch?v=tIIFKPzysok"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                ><span class="invisible">https://www.</span
+                ><span class="ellipsis">youtube.com/watch?v=tIIFKPzyso</span
+                ><span class="invisible">k</span></a
+              >
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">12/19/2022, 12:07:38 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              &quot;Twitter wird Elon Musk zum Millionär machen&quot;
+              <a
+                href="https://chaos.social/tags/rofl"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>rofl</span></a
+              >
+              - via
+              <span class="h-card"
+                ><a href="https://chaos.social/@linuzifer" class="u-url mention"
+                  >@<span>linuzifer</span></a
+                ></span
+              >
+              bei
+              <a
+                href="https://chaos.social/tags/LNP"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>LNP</span></a
+              >
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">12/18/2022, 1:51:28 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              <a
+                href="https://chaos.social/tags/Kapitalismus"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>Kapitalismus</span></a
+              >
+              im Endstadium
+            </p>
+
+            <a
+              href="./media_attachments/files/109/534/991/392/412/102/original/12ffb12e51af3472.jpg"
+            >
+              <img
+                class="attachment"
+                style="max-width: 1079px; max-height: 1919px"
+                src="./media_attachments/files/109/534/991/392/412/102/original/12ffb12e51af3472.jpg"
+                alt='Screenshot eines Tagesspiegel Artikels:
+"Flohmärkte in der Nachbarschaft. Ärztekammer-Präsident ruft dazu auf, sich gegenseitig mit Medikamenten auszuhelfen."'
+                loading="lazy"
+              />
+            </a>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">12/14/2022, 10:33:06 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              <a
+                href="https://snowflake.fiff.de"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                ><span class="invisible">https://</span
+                ><span class="">snowflake.fiff.de</span
+                ><span class="invisible"></span
+              ></a>
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">12/14/2022, 7:51:02 AM</div>
+          </header>
+          <div class="content">
+            <p>Die Energiewende in Bayern ist ein Kampf gegen Windmühlen.</p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">12/11/2022, 8:36:56 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              Why We Should Get Rid Of Intellectual Property<br /><a
+                href="https://www.youtube.com/watch?v=TWYHmkmctb8&amp;ab_channel=SecondThought"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                ><span class="invisible">https://www.</span
+                ><span class="ellipsis">youtube.com/watch?v=TWYHmkmctb</span
+                ><span class="invisible"
+                  >8&amp;ab_channel=SecondThought</span
+                ></a
+              >
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">12/11/2022, 9:47:34 AM</div>
+          </header>
+          <div class="content">
+            <p>
+              <span class="h-card"
+                ><a
+                  href="https://social.tchncs.de/@Erdrandbewohner"
+                  class="u-url mention"
+                  >@<span>Erdrandbewohner</span></a
+                ></span
+              >
+              Interessant! Leider ist die Anzahl an Instanzen nicht entscheidend
+              sondern wie sich die User auf diese verteilen.
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">12/11/2022, 9:33:10 AM</div>
+          </header>
+          <div class="content">
+            <p>
+              <a
+                href="https://chaos.social/tags/ChatGTP"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>ChatGTP</span></a
+              >
+              macht oft Fehler, versteht Fragen nicht oder gibt Plagiate von
+              sich, wirkt dabei aber seriös.<br />Es ist also nur noch eine
+              Frage der Zeit, bis Sie bei
+              <a
+                href="https://chaos.social/tags/Lanz"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>Lanz</span></a
+              >
+              ein Dauergast wird!
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">12/10/2022, 10:47:49 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              &quot;In Zukunft müssen Privatpersonen in der EU in der Lage
+              sein, Akkus in Geräten wie Handys und Laptops selbst auszutauschen
+              und zu ersetzen.&quot; :awesome: <br /><a
+                href="https://www.golem.de/news/smartphones-und-notebooks-eu-vorgabe-soll-akkutauschmoeglichkeit-fuer-nutzer-erzwingen-2212-170414.html?s=09"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                ><span class="invisible">https://www.</span
+                ><span class="ellipsis">golem.de/news/smartphones-und-</span
+                ><span class="invisible"
+                  >notebooks-eu-vorgabe-soll-akkutauschmoeglichkeit-fuer-nutzer-erzwingen-2212-170414.html?s=09</span
+                ></a
+              >
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">12/9/2022, 4:50:46 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              Status der
+              <a
+                href="https://chaos.social/tags/klimakatastophe"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>klimakatastophe</span></a
+              ><br />Auch Europa wird es HART treffen!<br /><a
+                href="https://youtu.be/JdRflKWby0k"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                ><span class="invisible">https://</span
+                ><span class="">youtu.be/JdRflKWby0k</span
+                ><span class="invisible"></span
+              ></a>
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">12/9/2022, 9:34:45 AM</div>
+          </header>
+          <div class="content">
+            <p>
+              Transport-Laster für fossilen Brennstoff biegt ab ohne zu schauen,
+              überrollt Radfahrerin auf Radweg under tötet Sie dabei.
+            </p>
+            <p>Ach wie furchtbar symbolisch!</p>
+            <p>
+              (Warum werden Lastwagenfahrer in Bayern eigentlich nicht in
+              Präventivgewahrsam genommen?)<br /><a
+                href="https://www.nordbayern.de/region/nuernberg/tanklaster-uberrollt-frau-todlicher-radler-unfall-im-nurnberger-suden-1.12798913"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                ><span class="invisible">https://www.</span
+                ><span class="ellipsis">nordbayern.de/region/nuernberg</span
+                ><span class="invisible"
+                  >/tanklaster-uberrollt-frau-todlicher-radler-unfall-im-nurnberger-suden-1.12798913</span
+                ></a
+              >
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">12/8/2022, 9:21:05 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              Kinder sterben grade weil die Politik der Meinung ist
+              Krankenhäuser müssen wirtschaftlich sein und Masken doof sind!<br /><a
+                href="https://www.ndr.de/nachrichten/niedersachsen/RSV-Kinder-sterben-weil-wir-sie-nicht-mehr-versorgen-koennen,virus196.html"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                ><span class="invisible">https://www.</span
+                ><span class="ellipsis">ndr.de/nachrichten/niedersachs</span
+                ><span class="invisible"
+                  >en/RSV-Kinder-sterben-weil-wir-sie-nicht-mehr-versorgen-koennen,virus196.html</span
+                ></a
+              >
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">12/8/2022, 8:27:19 AM</div>
+          </header>
+          <div class="content">
+            <p>
+              Kann mir jemand die Logik der Menschen erklären, die
+              <a
+                href="https://chaos.social/tags/vegetarisch"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>vegetarisch</span></a
+              >
+              vielleicht sogar
+              <a
+                href="https://chaos.social/tags/vegan"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>vegan</span></a
+              >
+              leben, sich dann aber ein fleischfressendes Raubtier wie eine
+              <a
+                href="https://chaos.social/tags/Katze"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>Katze</span></a
+              >
+              halten? 🤷
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">12/6/2022, 9:12:02 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              Chainless Digital Drive
+              <a
+                href="https://chaos.social/tags/Bicycles"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>Bicycles</span></a
+              >
+              are an interesting concept!<br /><a
+                href="https://youtu.be/r-Zyp6jX0HM"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                ><span class="invisible">https://</span
+                ><span class="">youtu.be/r-Zyp6jX0HM</span
+                ><span class="invisible"></span
+              ></a>
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">12/3/2022, 4:16:24 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              You are not the most social person? No problem!<br />We are
+              searching for
+              <a
+                href="https://chaos.social/tags/Angular"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>Angular</span></a
+              >
+              developers to join our fully remote small team. We develop high
+              quality web applications for mainly the healthcare- and the
+              energy-sector.<br />Join us and get a job that matters!<br /><a
+                href="https://fullstax.de/jobs/#angular-developer"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                ><span class="invisible">https://</span
+                ><span class="ellipsis">fullstax.de/jobs/#angular-deve</span
+                ><span class="invisible">loper</span></a
+              ><br /><a
+                href="https://chaos.social/tags/GetFediHired"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>GetFediHired</span></a
+              >
+              <a
+                href="https://chaos.social/tags/job"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>job</span></a
+              >
+              <a
+                href="https://chaos.social/tags/remotework"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>remotework</span></a
+              >
+              <a
+                href="https://chaos.social/tags/GW%C3%96"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>GWÖ</span></a
+              >
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">12/3/2022, 4:01:25 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              &quot;Warum Maske tragen wenn man auch Kinder triagieren
+              kann?&quot; via alenz@mastodon.social
+            </p>
+
+            <a
+              href="./media_attachments/files/109/450/574/309/983/043/original/cea6c1cfd7f5b29a.jpg"
+            >
+              <img
+                class="attachment"
+                style="max-width: 1280px; max-height: 720px"
+                src="./media_attachments/files/109/450/574/309/983/043/original/cea6c1cfd7f5b29a.jpg"
+                alt=""
+                loading="lazy"
+              />
+            </a>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">12/3/2022, 1:46:38 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              Ganz toller Beitrag zur
+              <a
+                href="https://chaos.social/tags/Anthroposophie"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>Anthroposophie</span></a
+              >
+              in Deutschland von
+              <a
+                href="https://chaos.social/tags/zdfheute"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>zdfheute</span></a
+              ><br /><a
+                href="https://www.youtube.com/watch?v=y3gKBNz0leg"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                ><span class="invisible">https://www.</span
+                ><span class="ellipsis">youtube.com/watch?v=y3gKBNz0le</span
+                ><span class="invisible">g</span></a
+              >
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">12/3/2022, 9:36:38 AM</div>
+          </header>
+          <div class="content">
+            <p>
+              Why is this not a thing anymore?<br /><a
+                href="https://youtu.be/WklguzXdIC0"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                ><span class="invisible">https://</span
+                ><span class="">youtu.be/WklguzXdIC0</span
+                ><span class="invisible"></span
+              ></a>
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">12/1/2022, 10:46:25 AM</div>
+          </header>
+          <div class="content">
+            <p>
+              Wir haben uns immer aufgeregt, dass Facebook oder Twitter
+              entschieden habe welche Inhalte man posten kann und welche nicht.
+              Jetzt haben wir die gleichen Diskussionen hier auf
+              <a
+                href="https://chaos.social/tags/mastodon"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>mastodon</span></a
+              >
+              wobei es jetzt nicht mehr nur um Brüse sondern auch gleich noch um
+              &quot;Politik&quot; und &quot;Essen&quot; geht. 🙈
+            </p>
+            <p>
+              Die Dezentralität von
+              <a
+                href="https://chaos.social/tags/mastodon"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>mastodon</span></a
+              >
+              mit Ihren kleinen undemokratischen Fürstentümern ist Fluch und
+              Segen zugleich!
+            </p>
+
+            <a
+              href="./media_attachments/files/109/438/007/746/294/791/original/d9952188e995d968.webp"
+            >
+              <img
+                class="attachment"
+                style="max-width: 640px; max-height: 275px"
+                src="./media_attachments/files/109/438/007/746/294/791/original/d9952188e995d968.webp"
+                alt="Warning sign. Trigger warnings."
+                loading="lazy"
+              />
+            </a>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">12/1/2022, 8:31:24 AM</div>
+          </header>
+          <div class="content">
+            <p>
+              Es gibt eine ganze Reihe von Inhalten, für die CW sehr sinnvoll
+              sind.<br />Essen darunter zu zählen, lässt tief blicken und
+              schnürt jede Hoffnung ab, dass hier eine bessere Welt entstehen
+              soll.
+            </p>
+            <p>Habe fertig.</p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/28/2022, 8:16:54 AM</div>
+          </header>
+          <div class="content">
+            <a
+              href="./media_attachments/files/109/420/418/841/824/026/original/96613d700718ce5b.png"
+            >
+              <img
+                class="attachment"
+                style="max-width: 1080px; max-height: 1077px"
+                src="./media_attachments/files/109/420/418/841/824/026/original/96613d700718ce5b.png"
+                alt='Meme: A young man and a woman are drinking coffee. She asks smiling "So what&#39;s your idea of a perfect date?". He answers also smiling "YYYY-MM-DD. I find other formats a bit confusing."'
+                loading="lazy"
+              />
+            </a>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/28/2022, 7:25:47 AM</div>
+          </header>
+          <div class="content">
+            <p>
+              <a
+                href="https://youtu.be/iGHXqVD2w5A"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                ><span class="invisible">https://</span
+                ><span class="">youtu.be/iGHXqVD2w5A</span
+                ><span class="invisible"></span
+              ></a>
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/27/2022, 9:05:51 AM</div>
+          </header>
+          <div class="content">
+            <p>
+              <a
+                href="https://chaos.social/tags/repairyourstuff"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>repairyourstuff</span></a
+              >
+              <a
+                href="https://chaos.social/tags/ifixedit"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>ifixedit</span></a
+              >
+              <a
+                href="https://chaos.social/tags/ReparierEcke"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>ReparierEcke</span></a
+              >
+              <a
+                href="https://chaos.social/tags/reparierenstattm%C3%BCll"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>reparierenstattmüll</span></a
+              >
+              <a
+                href="https://chaos.social/tags/repairculture"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>repairculture</span></a
+              >
+            </p>
+
+            <a
+              href="./media_attachments/files/109/414/957/773/328/132/original/658cbe6e5d6c234b.jpg"
+            >
+              <img
+                class="attachment"
+                style="max-width: 1247px; max-height: 1663px"
+                src="./media_attachments/files/109/414/957/773/328/132/original/658cbe6e5d6c234b.jpg"
+                alt=""
+                loading="lazy"
+              />
+            </a>
+
+            <a
+              href="./media_attachments/files/109/414/957/831/135/418/original/362062296375bb46.jpg"
+            >
+              <img
+                class="attachment"
+                style="max-width: 1247px; max-height: 1663px"
+                src="./media_attachments/files/109/414/957/831/135/418/original/362062296375bb46.jpg"
+                alt=""
+                loading="lazy"
+              />
+            </a>
+
+            <a
+              href="./media_attachments/files/109/414/957/807/767/463/original/3c7fce6d5952473a.jpg"
+            >
+              <img
+                class="attachment"
+                style="max-width: 1247px; max-height: 1663px"
+                src="./media_attachments/files/109/414/957/807/767/463/original/3c7fce6d5952473a.jpg"
+                alt=""
+                loading="lazy"
+              />
+            </a>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/26/2022, 3:58:03 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              Schönes Wochenende!<br /><a
+                href="https://www.youtube.com/watch?v=OWcf7RN7mdQ&amp;list=RDMM"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                ><span class="invisible">https://www.</span
+                ><span class="ellipsis">youtube.com/watch?v=OWcf7RN7md</span
+                ><span class="invisible">Q&amp;list=RDMM</span></a
+              >
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/25/2022, 2:32:37 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              @istuetzle Danke für den Tip! Genau diese Instanz hat dazu
+              geführt, das ich mich letztendlich von Twitter komplett
+              verabschiedet habe, den Links, die
+              &quot;climatejustice.social&quot; enthalten können nicht mehr
+              versendet werden 🤯 <br />Leider kommt die Instanz aber für mich
+              nicht in Frage, da eigentlich nur Klima-Content gepostet werden
+              soll, ich aber auch andere Interessen habe. Außerdem sind die
+              Regeln für
+              <a
+                href="https://chaos.social/tags/contentwarning"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>contentwarning</span></a
+              >
+              noch vager als auf chaos.sozial 😕 <br />Trotzdem Danke, ich such
+              weiter...
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/25/2022, 1:37:34 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              Kann mir jemand eine nette
+              <a
+                href="https://chaos.social/tags/mastodon"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>mastodon</span></a
+              >
+              Instanz empfehlen?<br />Gern mit Schwerpunkten wie
+              <a
+                href="https://chaos.social/tags/Klimakriese"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>Klimakriese</span></a
+              >
+              <a
+                href="https://chaos.social/tags/opensource"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>opensource</span></a
+              >
+              <a
+                href="https://chaos.social/tags/politik"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>politik</span></a
+              >
+              <a
+                href="https://chaos.social/tags/javascript"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>javascript</span></a
+              >
+              <a
+                href="https://chaos.social/tags/natur"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>natur</span></a
+              >
+              <a
+                href="https://chaos.social/tags/wissenschaft"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>wissenschaft</span></a
+              >
+              Wo seid Ihr so?
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/25/2022, 8:35:02 AM</div>
+          </header>
+          <div class="content">
+            <p>
+              Should simple images of
+              <a
+                href="https://chaos.social/tags/food"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>food</span></a
+              >
+              have a
+              <a
+                href="https://chaos.social/tags/contentwarning"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>contentwarning</span></a
+              >
+              on chaos.social?
+            </p>
+            <p>
+              We should discuss and establish a healthy CW policy!<br />Please
+              <a
+                href="https://chaos.social/tags/boost"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>boost</span></a
+              >!
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/25/2022, 8:00:00 AM</div>
+          </header>
+          <div class="content">
+            <p>
+              <span class="h-card"
+                ><a href="https://chaos.social/@ordnung" class="u-url mention"
+                  >@<span>ordnung</span></a
+                ></span
+              >
+              Gibt es irgendwo Regeln zur Nutzung von Content Warnungen hier auf
+              dem Server? Ich sehe immer mehr Leute, die mehr oder weniger allen
+              Bildern die sie posten eine CW verpassen.<br />Ist das gewünscht?
+              Gibt es irgendwelche Regeln an die man sich halten kann oder
+              muss?<br />Danke für eure Arbeit hier!
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/25/2022, 7:56:56 AM</div>
+          </header>
+          <div class="content">
+            <p>
+              <span class="h-card"
+                ><a href="https://chaos.social/@leah" class="u-url mention"
+                  >@<span>leah</span></a
+                ></span
+              >
+              <span class="h-card"
+                ><a href="https://chaos.social/@rixx" class="u-url mention"
+                  >@<span>rixx</span></a
+                ></span
+              >
+              Thank you for maintaining this monster of a server! We are really
+              thankful for what you are doing! Please let us here know if we
+              could help you in any way! 🤗
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/25/2022, 7:46:53 AM</div>
+          </header>
+          <div class="content">
+            <p>
+              <span class="h-card"
+                ><a
+                  href="https://chaos.social/@Julia_Schmeer"
+                  class="u-url mention"
+                  >@<span>Julia_Schmeer</span></a
+                ></span
+              >
+              If too much (all) content gets a CW then it gets normal to ignore
+              the CW and always click on it or maybe even disable CW all
+              together.<br />This is dangerous because than CW looses all
+              it&#39;s meaning and does not work anymore.
+            </p>
+            <p>
+              chaos.social&#39;s rule state that CW should be used for
+              advertisments and sexual content.
+            </p>
+            <p>
+              Look, we are on the same server and that is wonderfull. It&#39;s
+              also not about your account or stupid
+              <a
+                href="https://chaos.social/tags/mansplaining"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>mansplaining</span></a
+              >. It&#39;s about finding a usefull common CW policy here.
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/23/2022, 7:37:50 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              &quot;Meine Kinder trinken und Essen nicht in der Schule, weil man
+              nicht auf die Toiletten gehen kann!&quot;
+              <a
+                href="https://chaos.social/tags/Elternabend"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>Elternabend</span></a
+              >
+              <a
+                href="https://chaos.social/tags/Bayern"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>Bayern</span></a
+              >
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/23/2022, 7:04:27 AM</div>
+          </header>
+          <div class="content">
+            <p>
+              Solange das bisherige System besteht wird der Klimawandel sich
+              weiter verschärfen. Der CO₂<br />Ausstoß wird weiter gehen. Erst
+              ein schwerer Kollaps kann die Menschheit jetzt noch retten.<br />Das
+              Leiden der nächsten Jahrzehnte wird gigantisch!
+            </p>
+
+            <a
+              href="./media_attachments/files/109/391/836/200/743/168/original/736a002c8f3846aa.jpg"
+            >
+              <img
+                class="attachment"
+                style="max-width: 1040px; max-height: 693px"
+                src="./media_attachments/files/109/391/836/200/743/168/original/736a002c8f3846aa.jpg"
+                alt="Mann stützt sich emotional gebrochen an einer Wand ab."
+                loading="lazy"
+              />
+            </a>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/22/2022, 10:42:54 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              100+
+              <a
+                href="https://chaos.social/tags/JavaScript"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>JavaScript</span></a
+              >
+              Concepts<br /><a
+                href="https://youtu.be/lkIFF4maKMU"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                ><span class="invisible">https://</span
+                ><span class="">youtu.be/lkIFF4maKMU</span
+                ><span class="invisible"></span
+              ></a>
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/21/2022, 8:43:43 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              Heute hab ich einen meiner Stars getroffen 🥰 <br />Ulrike
+              Herrmann sieht nicht nur gut aus 😉 sie ist auch unglaublich klug
+              und hat mindestens eine genauso spitze Zunge wie ich.<br />Ich
+              kann jedes Buch von Ihr wirklich wärmstens empfehlen!
+            </p>
+
+            <a
+              href="./media_attachments/files/109/383/724/607/118/516/original/8f69bb690adffb0f.jpeg"
+            >
+              <img
+                class="attachment"
+                style="max-width: 1663px; max-height: 1247px"
+                src="./media_attachments/files/109/383/724/607/118/516/original/8f69bb690adffb0f.jpeg"
+                alt="Selfie von @mojoaxel und Ulrike Herrmann nach Ihrer Lesung in Fürth"
+                loading="lazy"
+              />
+            </a>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/21/2022, 8:20:56 AM</div>
+          </header>
+          <div class="content">
+            <p>Guten Morgen!<br />Raus aus den Federn, rein ins Fedi!</p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/20/2022, 9:54:59 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              Ist es jetzt schon Zeit zum Öko-Terroristen zu werden oder muss
+              man erst noch die
+              <a
+                href="https://chaos.social/tags/COP28"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>COP28</span></a
+              >
+              abwarten?
+            </p>
+            <p>Frage für einen Freund!</p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/19/2022, 4:15:43 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              Hey Daten-Nerds!<br />Das @destatis@twitter.com macht 2023 eine
+              große Einkommens- und Verbrauchsstichprobe! Macht mit!<br /><a
+                href="https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Einkommen-Konsum-Lebensbedingungen/evs2023/jetzt-teilnehmen.html"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                ><span class="invisible">https://www.</span
+                ><span class="ellipsis">destatis.de/DE/Themen/Gesellsc</span
+                ><span class="invisible"
+                  >haft-Umwelt/Einkommen-Konsum-Lebensbedingungen/evs2023/jetzt-teilnehmen.html</span
+                ></a
+              >
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/19/2022, 3:43:00 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              Hier erklärt ich einfach verständlich wie man man seine Tweets bei
+              Twitter zu Mastodon spiegelt:
+            </p>
+            <p>Lass den Unfug sein! Danke!</p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/16/2022, 8:11:42 AM</div>
+          </header>
+          <div class="content">
+            <p>
+              Ich möchte euch die
+              <a
+                href="https://chaos.social/tags/OpenSource"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>OpenSource</span></a
+              >
+              Browser Erweiterung uBlacklist empfehlen.
+            </p>
+            <p>
+              Diese ermöglicht es bestimmte Seiten aus der Google Suche
+              verschwinden zu lassen. Das kann sowohl für das private als auch
+              für das professionelle Suchen sinnvoll sein.
+              <a
+                href="https://chaos.social/tags/DigitalHygiene"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>DigitalHygiene</span></a
+              >
+            </p>
+            <p>
+              <a
+                href="https://iorate.github.io/ublacklist/"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                ><span class="invisible">https://</span
+                ><span class="">iorate.github.io/ublacklist/</span
+                ><span class="invisible"></span
+              ></a>
+            </p>
+
+            <a
+              href="./media_attachments/files/109/352/434/473/544/486/original/e73f09297ee9ae6c.png"
+            >
+              <img
+                class="attachment"
+                style="max-width: 630px; max-height: 440px"
+                src="./media_attachments/files/109/352/434/473/544/486/original/e73f09297ee9ae6c.png"
+                alt="Screenshot zeigt die Einstellungen der uBlocklist Erweiterung. Es sind beispielhaft zwei Webseiten geblockt: bild.de und focus.de."
+                loading="lazy"
+              />
+            </a>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/13/2022, 4:08:40 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              B̶u̶y̶ Bye
+              <a
+                href="https://chaos.social/tags/crypto"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>crypto</span></a
+              >
+              👋
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/13/2022, 1:24:55 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              &quot;Das 9-Euro-Ticket hatte viele Fans, bald kann man für 49
+              Euro im Monat den Nahverkehr nutzen. Doch für die Verkehrswende
+              braucht es andere Maßnahmen.&quot;
+              <a
+                href="https://chaos.social/tags/taz"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>taz</span></a
+              >
+              <a
+                href="https://chaos.social/tags/9eurofond"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>9eurofond</span></a
+              >
+              <a
+                href="https://chaos.social/tags/9euroTicket"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>9euroTicket</span></a
+              >
+              <a
+                href="https://chaos.social/tags/%C3%B6pnv"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>öpnv</span></a
+              >
+              <br /><a
+                href="https://taz.de/!5891774/"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                ><span class="invisible">https://</span
+                ><span class="">taz.de/!5891774/</span
+                ><span class="invisible"></span
+              ></a>
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/12/2022, 11:37:14 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              Frühestens Mitte, vielleicht auch erst gegen Ende dieses
+              Jahrhunderts soll es ein Endlager für unseren
+              <a
+                href="https://chaos.social/tags/Atomm%C3%BCll"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>Atommüll</span></a
+              >
+              geben. Das bedeutet wir hinterlassen unseren Enkeln dieses
+              schreckliche Erbe, die von der
+              <a
+                href="https://chaos.social/tags/Kernkraft"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>Kernkraft</span></a
+              >
+              selbst aber gar keinen Nutzen mehr haben werden.<br />Bei dem
+              Gedanken empfingen ich große
+              <a
+                href="https://chaos.social/tags/Scham"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>Scham</span></a
+              >
+              und
+              <a
+                href="https://chaos.social/tags/Wut"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>Wut</span></a
+              >
+              über unserer Gesellschaft!
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/12/2022, 7:40:59 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              &quot;Happiness is like a butterfly, the more you chase it, the
+              more it will evade you, but if you notice the other things around
+              you, it will gently come and sit on your shoulder.&quot;
+            </p>
+            <p>Henry David Thoreau</p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/11/2022, 12:12:28 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              Sollte die
+              <span class="h-card"
+                ><a
+                  href="https://chaos.social/@Freiheitsrechte"
+                  class="u-url mention"
+                  >@<span>Freiheitsrechte</span></a
+                ></span
+              >
+              eine Klimaklage beim Bundesverfassungsgericht einreichen wäre ich
+              bereit diesen mit einem fünfstelligen Betrag zu Sponsoren!
+              <br /><span class="h-card"
+                ><a
+                  href="https://chaos.social/@vieuxrenard"
+                  class="u-url mention"
+                  >@<span>vieuxrenard</span></a
+                ></span
+              >
+              Ist das für euch überhaupt ein Thema?
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/10/2022, 10:39:00 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              Interesting article about prototype pollution in
+              <a
+                href="https://chaos.social/tags/javascript"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>javascript</span></a
+              >
+              and the
+              <a
+                href="https://chaos.social/tags/security"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>security</span></a
+              >
+              problems this can cause!<br /><a
+                href="https://dev.to/jankapunkt/all-your-javascript-code-is-polluted-3e8l"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                ><span class="invisible">https://</span
+                ><span class="ellipsis">dev.to/jankapunkt/all-your-jav</span
+                ><span class="invisible">ascript-code-is-polluted-3e8l</span></a
+              >
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/7/2022, 7:30:04 AM</div>
+          </header>
+          <div class="content">
+            <p>
+              <span class="h-card"
+                ><a
+                  href="https://social.tchncs.de/@Erdrandbewohner"
+                  class="u-url mention"
+                  >@<span>Erdrandbewohner</span></a
+                ></span
+              >
+              <span class="h-card"
+                ><a
+                  href="https://mastodontech.de/@markusblogde"
+                  class="u-url mention"
+                  >@<span>markusblogde</span></a
+                ></span
+              >
+              Ich finde es falsch zusätzlich zur Green Web Foundation eine
+              subjektive Bewertung hinzufügen. Besonders negativ ist mir hier
+              die Bewertung von Cloudflare aufgefallen. Scheinbar hat der
+              Entwickler ein persönliches Problem mit großen US-Tech Konzernen!?
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/6/2022, 6:36:15 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              Endlich hab ich es geschafft meinen
+              <a
+                href="https://chaos.social/tags/mightyohm"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>mightyohm</span></a
+              >
+              <a
+                href="https://chaos.social/tags/DIY"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>DIY</span></a
+              >
+              Geiger-Zähler fertig zu bauen und mit einem
+              <a
+                href="https://chaos.social/tags/RaspberryPi"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>RaspberryPi</span></a
+              >
+              zu verbinden.<br />Dort wird mit
+              <a
+                href="https://chaos.social/tags/nodejs"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>nodejs</span></a
+              >
+              die serielle Schnittstelle per USB ausgelesen und der aktuelle
+              Wert über
+              <a
+                href="https://chaos.social/tags/HTTP"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>HTTP</span></a
+              >
+              als
+              <a
+                href="https://chaos.social/tags/JSON"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>JSON</span></a
+              >
+              bereit gestellt. Mein
+              <a
+                href="https://chaos.social/tags/NAS"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>NAS</span></a
+              >
+              ließt diesen Wert dann über
+              <a
+                href="https://chaos.social/tags/nodered"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>nodered</span></a
+              >
+              aus und pushed diesen in eine
+              <a
+                href="https://chaos.social/tags/InfluxDB"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>InfluxDB</span></a
+              >.
+              <a
+                href="https://chaos.social/tags/WochenendProjekt"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>WochenendProjekt</span></a
+              >
+            </p>
+
+            <a
+              href="./media_attachments/files/109/298/161/940/122/058/original/9c87f4d467f68469.jpg"
+            >
+              <img
+                class="attachment"
+                style="max-width: 380px; max-height: 285px"
+                src="./media_attachments/files/109/298/161/940/122/058/original/9c87f4d467f68469.jpg"
+                alt="Kleines Holzbrett auf das mit Kabelbinder eine MightyOhm Geiger Zähler Platine, ein Raspberry-Pi mit Kühlkörper und ein RS232 zu USB Adapter befestigt sind."
+                loading="lazy"
+              />
+            </a>
+
+            <a
+              href="./media_attachments/files/109/298/270/194/186/493/original/4277848703d9b6ca.png"
+            >
+              <img
+                class="attachment"
+                style="max-width: 1461px; max-height: 839px"
+                src="./media_attachments/files/109/298/270/194/186/493/original/4277848703d9b6ca.png"
+                alt="Ein InfluxDB Dashboard zeigt ein Zeiger-Diagramm von 0 bis 1 mit einem aktuellen Wert von 0.11 µSv/h sowie ein Linien-Diagramm der vergangenen Stunde."
+                loading="lazy"
+              />
+            </a>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/4/2022, 6:05:19 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              Tschechische Republik auf dem Weg zur vollständigen
+              <a
+                href="https://chaos.social/tags/Cannabis"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>Cannabis</span></a
+              >
+              <a
+                href="https://chaos.social/tags/Legalisierung"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>Legalisierung</span></a
+              >
+              in 2023!<br /><a
+                href="https://www.dw.com/en/czech-republic-on-the-way-to-legalizing-cannabis/a-63616450"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                ><span class="invisible">https://www.</span
+                ><span class="ellipsis">dw.com/en/czech-republic-on-th</span
+                ><span class="invisible"
+                  >e-way-to-legalizing-cannabis/a-63616450</span
+                ></a
+              >
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">11/4/2022, 5:43:34 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              Gutachten des Expertenrats: <br />&quot;Allein der Industriesektor
+              müsste seine jährlichen Emissionseinsparungen etwa verzehnfachen,
+              damit die deutschen Klimaziele bis 2030 noch erreicht werden
+              könnten. Im Verkehrssektor müsste der Ausstoß pro Jahr sogar um
+              das 14-fache reduziert werden.&quot; 🤯<br /><a
+                href="https://www.tagesschau.de/inland/innenpolitik/klimaziele-deutschland-expertenrat-101.html"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                ><span class="invisible">https://www.</span
+                ><span class="ellipsis">tagesschau.de/inland/innenpoli</span
+                ><span class="invisible"
+                  >tik/klimaziele-deutschland-expertenrat-101.html</span
+                ></a
+              >
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">10/31/2022, 9:35:04 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              Here is a really spooky video 😱 <br />that will not let you sleep
+              tonight 🎃<br /><a
+                href="https://youtu.be/17aE91SBMoY"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                ><span class="invisible">https://</span
+                ><span class="">youtu.be/17aE91SBMoY</span
+                ><span class="invisible"></span
+              ></a>
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">10/31/2022, 5:13:08 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              Not a bad advertisment!
+              <a
+                href="https://chaos.social/tags/climatedisaster"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>climatedisaster</span></a
+              >
+              <br /><a
+                href="https://youtu.be/12MiU4L4MZg"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                ><span class="invisible">https://</span
+                ><span class="">youtu.be/12MiU4L4MZg</span
+                ><span class="invisible"></span
+              ></a>
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">10/31/2022, 10:13:03 AM</div>
+          </header>
+          <div class="content">
+            <p>
+              What′s your plan for tomorrow?<br />Are you a leader or will you
+              follow?<br />Are you a fighter or will you cower?<br />It&#39;s
+              our time to take back the power!
+            </p>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">10/30/2022, 6:58:33 PM</div>
+          </header>
+          <div class="content">
+            <p>
+              Wer glaubt es gäbe noch Hoffnung in der
+              <a
+                href="https://chaos.social/tags/klimakatrophe"
+                class="mention hashtag"
+                rel="tag"
+                >#<span>klimakatrophe</span></a
+              >
+              dem sei gesagt, dass wir momentan Ski-Pisten künstlich
+              Beschneiden, Lifte mit Sitzheizung ausstatten und Nachtskifahren
+              bei Flutlicht ermöglichen 🤯<br /><a
+                href="https://www.nordbayern.de/ratgeber/urlaub/angespannte-lage-skigebiete-erhohen-die-preise-deutlich-weitere-einschrankungen-drohen-1.12671666"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                ><span class="invisible">https://www.</span
+                ><span class="ellipsis">nordbayern.de/ratgeber/urlaub/</span
+                ><span class="invisible"
+                  >angespannte-lage-skigebiete-erhohen-die-preise-deutlich-weitere-einschrankungen-drohen-1.12671666</span
+                ></a
+              >
+            </p>
+
+            <a
+              href="./media_attachments/files/109/258/744/179/118/295/original/33e9c9b1845c8e93.png"
+            >
+              <img
+                class="attachment"
+                style="max-width: 1678px; max-height: 1235px"
+                src="./media_attachments/files/109/258/744/179/118/295/original/33e9c9b1845c8e93.png"
+                alt=""
+                loading="lazy"
+              />
+            </a>
+          </div>
+        </section>
+
+        <section class="toot">
+          <header>
+            <div class="user">
+              <div class="avatar">
+                <img src="avatar.jpg" alt="users avatar" />
+              </div>
+              <div class="name">
+                <span class="name">Alex ☑️</span>
+                <a class="id" href="https://chaos.social/users/mojoaxel"
+                  >@mojoaxel@chaos.social</a
+                >
+              </div>
+            </div>
+            <div class="published">5/28/2022, 11:36:30 PM</div>
+          </header>
+          <div class="content">
+            <p>America Is A Gun</p>
+            <p>
+              England is a cup of tea.<br />France, a wheel of ripened brie.<br />Greece,
+              a short, squat olive tree.<br />America is a gun.
+            </p>
+            <p>
+              Brazil is football on the sand.<br />Argentina, Maradona&#39;s
+              hand.<br />Germany, an oompah band.<br />America is a gun.
+            </p>
+            <p>
+              Holland is a wooden shoe.<br />Hungary, a goulash stew.<br />Australia,
+              a kangaroo.<br />America is a gun.
+            </p>
+            <p>
+              Japan is a thermal spring.<br />Scotland is a highland fling.<br />Oh,
+              better to be anything<br />than America as a gun.”
+            </p>
+            <p>― Brian Bilston</p>
+          </div>
+        </section>
+      </ul>
+
+      <style type="text/css">
+        ul.toots {
+          list-style-type: none;
+          padding: 0;
+          margin: 0;
+        }
+      </style>
+    </main>
+    <footer>
+      <div id="page_footer">
+        <ul class="content">
+          <li>
+            <a href="https://github.com/mojoaxel/tootback#readme">GitHub</a>
+          </li>
+        </ul>
+      </div>
+
+      <style type="text/css">
+        #page_footer {
+          padding: var(--padding);
+        }
+        #page_footer ul.content {
+          display: flex;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          flex-direction: row;
+          justify-content: space-between;
+        }
+      </style>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="theme.css" />
+    <style type="text/css">
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        max-width: 40rem;
+        min-height: 100vh;
+        margin: 0 auto;
+        background-color: var(--page-background-color);
+        color: var(--text-color);
+        font-family: var(--main-font-family);
+      }
+      a,
+      a:visited,
+      a:active {
+        color: var(--text-color-links);
+        text-decoration: none;
+      }
+      a:hover {
+        color: var(--text-color-links);
+        text-decoration: underline;
+      }
+      header,
+      main,
+      footer {
+        width: 100%;
+        background-color: var(--background-color);
+        flex-grow: 1;
+      }
+      main {
+        flex-grow: 2;
+      }
+      footer {
+        margin-top: 1rem;
+      }
+      .toot {
+        box-sizing: border-box;
+        display: block;
+        margin: 0;
+        padding: 1rem;
+        width: 100%;
+        border-bottom: 1px solid var(--page-background-color);
+      }
+
+      .toot header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .toot header .user {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+      }
+      .toot header .user .avatar {
+        width: 2rem;
+        height: 2rem;
+        border: none;
+        border-radius: var(--border-radius);
+      }
+      .toot header .user .avatar img {
+        width: 100%;
+        height: 100%;
+      }
+      .toot header .user .name {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .toot .published {
+        color: var(--text-color-secondary);
+        align-self: flex-start;
+      }
+
+      .toot .attachment {
+        width: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div id="page_header">
+        <div class="banner">
+          <img width="100%" src="header.jpeg" alt="background banner" />
+        </div>
+        <section class="content">
+          <div class="user">
+            <img class="avatar" src="avatar.jpg" alt="user avatar" />
+            <div class="names">
+              <div class="name">Alex ☑️</div>
+              <ul>
+                <li>
+                  <a href="https://chaos.social/@mojoaxel"
+                    >@mojoaxel@chaos.social</a
+                  >
+                </li>
+
+                <li>
+                  <a href="https://bitcoinhackers.org/users/mojoaxel"
+                    >@mojoaxel@bitcoinhackers.org</a
+                  >
+                </li>
+
+                <li>
+                  <a href="https://social.tchncs.de/users/mojoaxel"
+                    >@mojoaxel@social.tchncs.de</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="summary">
+            <p>
+              Softwareker | JavaScript lover | Arbeitgeber | Nachhaltigkeit |
+              Transparenz-Extremist | de,en
+            </p>
+          </div>
+
+          <div class="status">
+            This is a static archive. This account is no longer active.
+
+            <br />
+            The user moved to
+            <a href="https://social.tchncs.de/users/mojoaxel"
+              >@mojoaxel@social.tchncs.de</a
+            >
+          </div>
+
+          <style type="text/css">
+            .status {
+              position: relative;
+              color: var(--text-color);
+              border: 1px dotted var(--text-color-links);
+              border-radius: var(--borer-radius);
+              padding: 0.5rem;
+            }
+            .status::after {
+              content: "！";
+              display: block;
+              position: absolute;
+              top: 0;
+              right: 0;
+              font-size: 2rem;
+              color: var(--text-color-links);
+            }
+          </style>
+
+          <dl class="attachments">
+            <dt>GitHub</dt>
+            <dd>
+              <span class="h-card"
+                ><a href="https://chaos.social/@mojoaxel" class="u-url mention"
+                  >@<span>mojoaxel</span></a
+                ></span
+              >
+            </dd>
+
+            <dt>Work</dt>
+            <dd>
+              <a
+                href="https://fullstax.de"
+                target="_blank"
+                rel="nofollow noopener noreferrer me"
+                ><span class="invisible">https://</span
+                ><span class="">fullstax.de</span><span class="invisible"></span
+              ></a>
+            </dd>
+          </dl>
+
+          <style type="text/css">
+            dl.attachments {
+              display: block;
+              margin: 0;
+              margin: 1rem 0 0 0;
+              padding: 0;
+              font-size: smaller;
+              background-color: var(--page-background-color);
+              border-radius: var(--border-radius);
+            }
+            .attachments dt,
+            .attachments dd {
+              margin: 0;
+              padding: 0 1rem;
+            }
+            .attachments dt {
+              text-transform: uppercase;
+              color: var(--text-color-secondary);
+              padding-top: 1rem;
+            }
+            .attachments dd {
+              border-bottom: 1px solid var(--background-color);
+              padding-bottom: 1rem;
+            }
+          </style>
+        </section>
+      </div>
+
+      <style type="text/css">
+        #page_header {
+          border-bottom: 1px solid var(--page-background-color);
+        }
+        #page_header .content {
+          padding: var(--padding);
+        }
+        #page_header .content .user {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 2rem;
+        }
+        #page_header .content .user .avatar {
+          width: 7rem;
+          height: 7rem;
+          border-radius: var(--borer-radius);
+          border: 2px solid var(--text-color);
+        }
+        #page_header .content .user .names {
+          display: flex;
+          flex-direction: column;
+          text-align: right;
+        }
+        #page_header .content .user .names .name {
+          font-size: var(--padding);
+          font-weight: bold;
+          margin: 0.5rem 0;
+        }
+        #page_header .content .user .names ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+      </style>
+      <nav>
+        <ul class="navigation">
+          <li>
+            <a href="./index.html">
+              <em>55</em>
+              Posts
+            </a>
+          </li>
+          <li><em>144</em> Replies</li>
+          <li>
+            <a href="./likes.html">
+              <em>693</em>
+              Likes
+            </a>
+          </li>
+          <li>
+            <a href="./bookmarks.html">
+              <em>2</em>
+              Bookmarks
+            </a>
+          </li>
+          <li>
+            <a href="./media.html">
+              <em>18</em>
+              Media
+            </a>
+          </li>
+          <li>
+            <a href="./tags.html">
+              <em>80</em>
+              Tags
+            </a>
+          </li>
+        </ul>
+
+        <style type="text/css">
+          ul.navigation {
+            list-style-type: none;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color-secondary);
+            background-color: var(--page-background-color);
+          }
+          ul.navigation li {
+            display: block;
+            padding: 1rem;
+          }
+          ul.navigation li.active {
+            background-color: var(--background-color);
+          }
+          ul.navigation li em {
+            font-weight: bold;
+            font-style: normal;
+          }
+        </style>
+      </nav>
+    </header>
+    <main>
+      <ul class="tags">
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/9eurofond">#9eurofond</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/9EuroTicket">#9EuroTicket</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/angular">#angular</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/anthroposophie">#anthroposophie</a>
+          <span class="tagCount"> [2] </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/atomm%C3%BCll">#atommüll</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/bayern">#bayern</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/bicycles">#bicycles</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/boost">#boost</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/c">#c</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/cannabis">#cannabis</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/CCCAMP2011">#CCCAMP2011</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/chatgtp">#chatgtp</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/climatedisaster"
+            >#climatedisaster</a
+          >
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/contentwaring">#contentwaring</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 2rem">
+          <a href="https://chaos.social/tags/contentwarning">#contentwarning</a>
+          <span class="tagCount"> [4] </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/COP28">#COP28</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/crypto">#crypto</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/digitalhygiene">#digitalhygiene</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/diy">#diy</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/echauffierungsposts"
+            >#echauffierungsposts</a
+          >
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/egon">#egon</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/elternabend">#elternabend</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/emporungsfreiezone"
+            >#emporungsfreiezone</a
+          >
+          <span class="tagCount"> [2] </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/emporungstweets"
+            >#emporungstweets</a
+          >
+          <span class="tagCount"> [2] </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/food">#food</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/ftx">#ftx</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/Furth">#Furth</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/getfedihired">#getfedihired</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/gwo">#gwo</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/homoopathie">#homoopathie</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/http">#http</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/ifixedit">#ifixedit</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/influxdb">#influxdb</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 2rem">
+          <a href="https://chaos.social/tags/javascript">#javascript</a>
+          <span class="tagCount"> [3] </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/job">#job</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/json">#json</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/kapitalismus">#kapitalismus</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/katze">#katze</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/kernkraft">#kernkraft</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/klimakatastophe"
+            >#klimakatastophe</a
+          >
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/klimakatrophe">#klimakatrophe</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/klimakriese">#klimakriese</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/klimaneutral">#klimaneutral</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/lanz">#lanz</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/legalisierung">#legalisierung</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/lnp">#lnp</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/mansplaining">#mansplaining</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 2rem">
+          <a href="https://chaos.social/tags/mastodon">#mastodon</a>
+          <span class="tagCount"> [6] </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/mightyohm">#mightyohm</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/nachhaltig">#nachhaltig</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/nas">#nas</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/natur">#natur</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/node">#node</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/nodejs">#nodejs</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/nodered">#nodered</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/openDTU">#openDTU</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/opensource">#opensource</a>
+          <span class="tagCount"> [2] </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/%C3%B6pnv">#öpnv</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/politik">#politik</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/python">#python</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/raspberrypi">#raspberrypi</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/remotework">#remotework</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/repairability">#repairability</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/repairculture">#repairculture</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/repairyourstuff"
+            >#repairyourstuff</a
+          >
+          <span class="tagCount"> [2] </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/ReparierEcke">#ReparierEcke</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/reparierenstattmull"
+            >#reparierenstattmull</a
+          >
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/rofl">#rofl</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/scham">#scham</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/security">#security</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/taz">#taz</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/trigger">#trigger</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/vegan">#vegan</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/vegetarisch">#vegetarisch</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/vgn">#vgn</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/waldorfschule">#waldorfschule</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/wissenschaft">#wissenschaft</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/wochenendprojekt"
+            >#wochenendprojekt</a
+          >
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/wut">#wut</a>
+          <span class="tagCount"> </span>
+        </li>
+
+        <li style="font-size: 1rem">
+          <a href="https://chaos.social/tags/zdfheute">#zdfheute</a>
+          <span class="tagCount"> </span>
+        </li>
+      </ul>
+
+      <style type="text/css">
+        ul.tags {
+          list-style-type: none;
+          padding: var(--padding);
+          margin: 0;
+          float: left;
+          text-align: center;
+          line-height: 2rem;
+        }
+        ul.tags li {
+          display: inline-block;
+          margin: 0 0.5rem;
+        }
+        .tagCount {
+          display: none;
+          color: var(--text-color-secondary);
+        }
+      </style>
+    </main>
+    <footer>
+      <div id="page_footer">
+        <ul class="content">
+          <li>
+            <a href="https://github.com/mojoaxel/tootback#readme">GitHub</a>
+          </li>
+        </ul>
+      </div>
+
+      <style type="text/css">
+        #page_footer {
+          padding: var(--padding);
+        }
+        #page_footer ul.content {
+          display: flex;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          flex-direction: row;
+          justify-content: space-between;
+        }
+      </style>
+    </footer>
+  </body>
+</html>
